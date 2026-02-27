@@ -9,7 +9,7 @@ import (
 func TestMatcher_Match_ByRegexAndLevel(t *testing.T) {
 	m, err := NewMatcher(
 		[]string{"ERROR"},
-		[]string{"^Error processing request$", "^Invalid input received$"},
+		[]string{"Error processing request", "Invalid input received"},
 	)
 	if err != nil {
 		t.Fatalf("ожидается без ошибок, получено: %v", err)
@@ -30,7 +30,7 @@ func TestMatcher_Match_ByRegexAndLevel(t *testing.T) {
 func TestMatcher_NoMatch_WrongRegex(t *testing.T) {
 	m, err := NewMatcher(
 		[]string{"ERROR"},
-		[]string{"^Error processing request$"},
+		[]string{"Error processing request"},
 	)
 	if err != nil {
 		t.Fatalf("ожидалось без ошибок, получено: %v", err)
@@ -51,7 +51,7 @@ func TestMatcher_NoMatch_WrongRegex(t *testing.T) {
 func TestMatcher_EmptyLevels_AllLevelsAllowed(t *testing.T) {
 	m, err := NewMatcher(
 		[]string{},
-		[]string{"^Invalid input received$"},
+		[]string{"Invalid input received"},
 	)
 	if err != nil {
 		t.Fatalf("ожидается без ошибок, получено: %v", err)
@@ -72,7 +72,7 @@ func TestMatcher_EmptyLevels_AllLevelsAllowed(t *testing.T) {
 func TestMatcher_LevelFilteredOut(t *testing.T) {
 	m, err := NewMatcher(
 		[]string{"ERROR"},
-		[]string{"^Invalid input received$"},
+		[]string{"Invalid input received"},
 	)
 	if err != nil {
 		t.Fatalf("ожидается без ошибок, получено: %v", err)
