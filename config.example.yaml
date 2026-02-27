@@ -1,0 +1,19 @@
+log_file: "../logs.log"
+poll_interval_ms: 500
+
+sender:
+  type: "telegram"
+
+telegram:
+  bot_token: "token"
+  chat_id: "chatId"
+
+filters:
+  levels: []
+  alert_regex:
+    - "^Error processing request$"
+    - "^Invalid input received$"
+
+format:
+  include_raw: true
+  include_fingerprint: true
