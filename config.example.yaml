@@ -11,8 +11,8 @@ telegram:
 filters:
   levels: []
   alert_regex:
-    - "^Error processing request$"
-    - "^Invalid input received$"
+    - "^Error processing request"
+    - "^Invalid input received"
 
 format:
   include_raw: true
