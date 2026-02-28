@@ -31,8 +31,9 @@
 ```text
 Bug_tracking_bot/
 ├── cmd/
-│   └── main.go
-│
+│   ├── main.go
+│   ├── build.go
+│   └── reload.go
 ├── internal/
 │   ├── config/
 │   │   └── config.go
@@ -47,9 +48,11 @@ Bug_tracking_bot/
 │   │   │   └── parser_test.go
 │   │   │
 │   │   ├── protect_from_duplicates/
-│   │   │   └── formatter.go
+│   │   │   ├── dedup.go
+│   │   │   └── dedup_test.go
 │   │   │
 │   │   └── types.go
+│   │   └── formatter.go        
 │   │
 │   ├── reader/
 │   │   └── reader.go
@@ -326,4 +329,5 @@ go test ./...
 ```
 
 ---
+
 
