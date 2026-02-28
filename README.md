@@ -14,6 +14,7 @@
 
 ## Возможности
 
+- работает локально
 - чтение логов из файла `logs.log`
 - фильтрация по регулярным выражениям из `config.yaml`
 - опциональная фильтрация по уровням логов (`DEBUG`, `INFO`, `ERROR`) 
@@ -33,12 +34,17 @@ Bug_tracking_bot/
 ├── cmd/
 │   ├── main.go
 │   ├── build.go
-│   └── reload.go
+│   ├── reload.go
+│   └── reload_test.go
 ├── internal/
 │   ├── config/
-│   │   └── config.go
+│   │   ├── config.go
+│   │   └── config_test.go
 │   │
 │   ├── log_processing/
+│   │   ├── formatter.go /
+│   │   │   ├── formatter_stdout.go
+│   │   │   └── formatter_telegram.go
 │   │   ├── filter_from_config/
 │   │   │   ├── matcher.go
 │   │   │   └── matcher_test.go
@@ -52,10 +58,10 @@ Bug_tracking_bot/
 │   │   │   └── dedup_test.go
 │   │   │
 │   │   └── types.go
-│   │   └── formatter.go        
 │   │
 │   ├── reader/
-│   │   └── reader.go
+│   │   ├── reader.go
+│   │   └── reader_test.go
 │   │
 │   └── sender/
 │       ├── sender.go
@@ -329,5 +335,7 @@ go test ./...
 ```
 
 ---
+
+
 
 
