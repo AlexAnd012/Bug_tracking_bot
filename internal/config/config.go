@@ -8,6 +8,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const defaultPollIntervalMS = 500 // Частота чтения логов
+
 type Config struct {
 	LogFile        string         `yaml:"log_file"`
 	PollIntervalMS int            `yaml:"poll_interval_ms"`
@@ -59,7 +61,7 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("отсутсвует файл с логами")
 	}
 	if c.PollIntervalMS <= 0 {
-		c.PollIntervalMS = 500
+		c.PollIntervalMS = defaultPollIntervalMS
 	}
 
 	c.Sender.Type = strings.ToLower(strings.TrimSpace(c.Sender.Type))
@@ -71,6 +73,16 @@ func (c *Config) Validate() error {
 
 	for i := range c.Filters.Levels {
 		c.Filters.Levels[i] = strings.ToUpper(strings.TrimSpace(c.Filters.Levels[i]))
+	}
+
+	if len(c.Filters.AlertRegex) == 0 {
+		return fmt.Errorf("filters.alert_regex не может быть пустым")
+	}
+
+	for _, mes := range c.Filters.AlertRegex {
+		if strings.TrimSpace(mes) == "" {
+			return fmt.Errorf("filters.alert_regex не может содержать пустые значения")
+		}
 	}
 
 	if c.Sender.Type == "telegram" {

@@ -44,7 +44,6 @@ type telegramSendMessageResponse struct {
 }
 
 func (s *TelegramSender) Send(ctx context.Context, text string) error {
-	// Создаем тело запроса
 	body := telegramSendMessageRequest{
 		ChatID:                s.chatID,
 		Text:                  text,
@@ -59,7 +58,6 @@ func (s *TelegramSender) Send(ctx context.Context, text string) error {
 
 	url := fmt.Sprintf("%s/bot%s/sendMessage", s.baseURL, s.token)
 
-	// Создаем http запрос с контекстом
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, url, bytes.NewReader(b))
 	if err != nil {
 		return fmt.Errorf("ошибка при создании запроса telegram: %w", err)

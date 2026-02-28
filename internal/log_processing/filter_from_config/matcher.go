@@ -47,7 +47,7 @@ func (m *Matcher) Match(entry log_processing.LogEntry) bool {
 	}
 	// проверка регулярного выражения по сообщению
 	if len(m.alertRegex) == 0 {
-		return true
+		return false
 	}
 
 	for _, re := range m.alertRegex {

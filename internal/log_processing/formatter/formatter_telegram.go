@@ -1,13 +1,14 @@
-package log_processing
+package formatter
 
 import (
 	"Bug_tracking_bot/internal/config"
+	"Bug_tracking_bot/internal/log_processing"
 	"Bug_tracking_bot/internal/log_processing/protect_from_duplicates"
 	"fmt"
 	"html"
 )
 
-func Format(entry LogEntry, cfg config.FormatConfig) string {
+func FormatTelegram(entry log_processing.LogEntry, cfg config.FormatConfig) string {
 	var text string
 	time := entry.Timestamp.Format("2006-01-02 15:04:05")
 	level := html.EscapeString(entry.Level)
